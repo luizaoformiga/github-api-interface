@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import React from "react";
 import * as S from "./styled";
 
 type Props = {
@@ -8,7 +7,11 @@ type Props = {
   fullName: string;
 };
 
-const RepositoryItem: NextPage<Props> = ({ name, linkToRepo, fullName }) => {
+export const RepositoryItem: NextPage<Props> = ({
+  name,
+  linkToRepo,
+  fullName,
+}) => {
   return (
     <S.Wrapper>
       <S.WrapperTitle>{name}</S.WrapperTitle>
@@ -19,5 +22,3 @@ const RepositoryItem: NextPage<Props> = ({ name, linkToRepo, fullName }) => {
     </S.Wrapper>
   );
 };
-
-export default RepositoryItem;

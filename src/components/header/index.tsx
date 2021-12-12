@@ -1,14 +1,14 @@
 import { useState } from "react";
 import * as S from "./styled";
 import useGithub from "../../hooks/github-hooks";
-import { NextPage } from "next";
+import { NextComponentType } from "next";
 
-const Header: NextPage = () => {
+export const Header: NextComponentType = () => {
   const { getUser } = useGithub();
   const [usernameForSearch, setUsernameForSearch] = useState("");
 
-  const submitGetUser = () => {
-    if (!usernameForSearch) return;
+  const submitGetUser = (): void => {
+    if (!usernameForSearch) return undefined;
     return getUser(usernameForSearch);
   };
 
@@ -32,4 +32,3 @@ const Header: NextPage = () => {
   );
 };
 
-export default Header;

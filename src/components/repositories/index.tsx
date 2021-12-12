@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { NextPage } from "next";
+import { useEffect, useState } from "react";
 import useGithub from "../../hooks/github-hooks";
-import RepositoryItem from "../repository-item";
+import { RepositoryItem } from "../repository-item";
 import * as S from "./styled";
 
 type Props = {
@@ -8,19 +9,25 @@ type Props = {
   full_name: string;
 };
 
-const Repositories = () => {
+export const Repositories: NextPage = () => {
   const { githubState, getUserRepos, getUserStarred } = useGithub();
-  const [hasUserForSearchrepos, setHasUserForSearchrepos] = useState(false);
+  const [hasUserForSearchrepos, setHasUserForSearchrepos] = useState([]);
 
   useEffect(() => {
     if (githubState.user.login) {
       getUserRepos(githubState.user.login);
       getUserStarred(githubState.user.login);
     }
+    
     setHasUserForSearchrepos(
       (prevState) => (prevState = githubState.repositories)
     );
-  }, [getUserRepos, getUserStarred, githubState.repositories, githubState.user.login]);
+  }, [
+    getUserRepos,
+    getUserStarred,
+    githubState.repositories,
+    githubState.user.login,
+  ]);
 
   return (
     <>
@@ -64,5 +71,3 @@ const Repositories = () => {
     </>
   );
 };
-
-export default Repositories;

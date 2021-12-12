@@ -1,36 +1,10 @@
 import { NextPage } from "next";
 import { AxiosResponse } from "axios";
-import React, { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import api from "../services/api";
+import { OwnProps, Props } from "./repository";
 
-type Props = {
-  id: number;
-  avatar: string;
-  login: any;
-  name: string;
-  html_url: string;
-  blog: any;
-  company: any;
-  location: any;
-  followers: number;
-  following: number;
-  public_gists: number;
-  public_repos: number;
-};
-
-type OwnProps = {
-  loading: false,
-  user: {},
-  repositories: [],
-  starred: [],
-}
-
-export const GithubContext = createContext<any>({
-  loading: false,
-  user: {},
-  repositories: [],
-  starred: [],
-});
+export const GithubContext = createContext<OwnProps>({} as OwnProps);
 
 const GithubProvider: NextPage = ({ children }) => {
   const [githubState, setGithubState] = useState({
@@ -39,10 +13,10 @@ const GithubProvider: NextPage = ({ children }) => {
     user: {
       id: 0,
       avatar: "",
-      login: [],
+      login: "",
       name: "",
       html_url: "",
-      blog: [],
+      blog: "",
       company: [],
       location: "",
       followers: 0,
@@ -54,7 +28,7 @@ const GithubProvider: NextPage = ({ children }) => {
     starred: [],
   });
 
-  const getUser = (username: string) => {
+  const getUser = (username: string): void => {
     setGithubState((prevState) => ({
       ...prevState,
       loading: !prevState.loading,
@@ -93,6 +67,7 @@ const GithubProvider: NextPage = ({ children }) => {
   const getUserRepos = (username: string) => {
     api.get(`users/${username}/repos`).then(({ data }) => {
       console.log("data: " + JSON.stringify(data));
+
       setGithubState((prevState) => ({
         ...prevState,
         repositories: data,
@@ -100,8 +75,8 @@ const GithubProvider: NextPage = ({ children }) => {
     });
   };
 
-  const getUserStarred = (username: string) => {
-    api.get(`users/${username}/starred`).then((data: any) => {
+  const getUserStarred = (username: string): void => {
+    api.get(`users/${username}/starred`).then(({ data }) => {
       console.log("data: " + JSON.stringify(data));
       setGithubState((prevState) => ({
         ...prevState,
@@ -110,7 +85,7 @@ const GithubProvider: NextPage = ({ children }) => {
     });
   };
 
-  const contextValue = {
+  const contextValue: OwnProps = {
     githubState,
     getUser: useCallback((username: string): void => getUser(username), []),
     getUserRepos: useCallback(

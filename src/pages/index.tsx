@@ -1,8 +1,10 @@
 import { NextPage } from "next";
-import Layout from "../components/layout";
-import NoSearch from "../components/no-search";
-import Profile from "../components/profile";
-import Repositories from "../components/repositories";
+import {
+  Layout,
+  NoSearch,
+  Profile,
+  Repositories,
+} from "../components";
 import useGithub from "../hooks/github-hooks";
 
 const Home: NextPage = () => {
@@ -10,9 +12,9 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      {githubState.hasUser ? (
+      {githubState?.hasUser ? (
         <>
-          {githubState.loading ? (
+          {githubState?.loading ? (
             <p>Loading</p>
           ) : (
             <>

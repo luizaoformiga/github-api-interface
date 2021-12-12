@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import App from "../App";
+import Home from ".";
 import { ResetCSS } from "../global/resetCSS";
 import GithubProvider from "../providers/github-provider";
 
@@ -8,7 +8,7 @@ const Providers: NextPage = () => {
     <main>
       <GithubProvider>
         <ResetCSS />
-        <App />
+        <Home />
       </GithubProvider>
     </main>
   );

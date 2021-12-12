@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import Header from "../header";
+import { Header } from "../header";
 import * as S from "./styled";
 
-const Layout: NextPage = ({ children }) => {
+export const Layout: NextPage = ({ children }) => {
   return (
     <S.WrapperLayout>
       <Header />
@@ -10,5 +10,3 @@ const Layout: NextPage = ({ children }) => {
     </S.WrapperLayout>
   );
 };
-
-export default Layout;
