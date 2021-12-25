@@ -12,7 +12,7 @@ const GithubProvider: NextPage = ({ children }) => {
     loading: false,
     user: {
       id: 0,
-      avatar: "",
+      avatar_url: "",
       login: "",
       name: "",
       html_url: "",
@@ -42,7 +42,7 @@ const GithubProvider: NextPage = ({ children }) => {
           hasUser: true,
           user: {
             id: data?.data.id,
-            avatar: data?.data.avatar,
+            avatar_url: data?.data.avatar_url,
             login: data?.data.login,
             name: data?.data.name,
             html_url: data?.data.html_url,
@@ -64,7 +64,7 @@ const GithubProvider: NextPage = ({ children }) => {
       });
   };
 
-  const getUserRepos = (username: string) => {
+  const getUserRepos = (username: string): void => {
     api.get(`users/${username}/repos`).then(({ data }) => {
       console.log("data: " + JSON.stringify(data));
 

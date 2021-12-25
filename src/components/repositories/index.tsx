@@ -14,20 +14,17 @@ export const Repositories: NextPage = () => {
   const [hasUserForSearchrepos, setHasUserForSearchrepos] = useState([]);
 
   useEffect(() => {
-    if (githubState.user.login) {
-      getUserRepos(githubState.user.login);
-      getUserStarred(githubState.user.login);
-    }
-    
-    setHasUserForSearchrepos(
-      (prevState) => (prevState = githubState.repositories)
-    );
-  }, [
-    getUserRepos,
-    getUserStarred,
-    githubState.repositories,
-    githubState.user.login,
-  ]);
+    (async function getdata() {
+      if (githubState.user.login) {
+        getUserRepos(githubState.user.login);
+        getUserStarred(githubState.user.login);
+      }
+
+      setHasUserForSearchrepos(
+        (prevState) => (prevState = githubState.repositories)
+      );
+    })();
+  }, [getUserRepos, getUserStarred, githubState.user.login]);
 
   return (
     <>

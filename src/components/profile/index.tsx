@@ -7,7 +7,7 @@ export const Profile: NextPage = () => {
 
   return (
     <S.Wrapper>
-      <S.WrapperImage src={githubState.user.avatar} alt="Avatar of user" />
+      <S.WrapperImage src={githubState.user.avatar_url} alt="Avatar of user" />
       <S.WrapperInfoUser>
         <div>
           <h1>{githubState.user.name}</h1>
