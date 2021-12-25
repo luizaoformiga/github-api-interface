@@ -1,8 +1,8 @@
-import { NextPage } from "next"
+import { NextComponentType } from "next"
 import useGithub from "../../hooks/github-hooks";
 import * as S from "./styled";
 
-export const Profile: NextPage = () => {
+export const Profile: NextComponentType = () => {
   const { githubState } = useGithub();
 
   return (

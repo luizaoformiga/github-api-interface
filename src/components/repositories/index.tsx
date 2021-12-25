@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { NextComponentType } from "next";
 import { useEffect, useState } from "react";
 import useGithub from "../../hooks/github-hooks";
 import { RepositoryItem } from "../repository-item";
@@ -9,7 +9,7 @@ type Props = {
   full_name: string;
 };
 
-export const Repositories: NextPage = () => {
+export const Repositories: NextComponentType = () => {
   const { githubState, getUserRepos, getUserStarred } = useGithub();
   const [hasUserForSearchrepos, setHasUserForSearchrepos] = useState([]);
 

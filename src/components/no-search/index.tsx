@@ -1,7 +1,7 @@
-import { NextPage } from "next";
+import { NextComponentType } from "next";
 import * as S from "./styled";
 
-export const NoSearch: NextPage = () => {
+export const NoSearch: NextComponentType = () => {
   return (
     <S.Wrapper>
       <h1>Nenhum usuario pesquisado</h1>

@@ -1,8 +1,8 @@
-import { NextPage } from "next";
+import { NextComponentType } from "next";
 import { Header } from "../header";
 import * as S from "./styled";
 
-export const Layout: NextPage = ({ children }) => {
+export const Layout: NextComponentType = ({ children }) => {
   return (
     <S.WrapperLayout>
       <Header />
