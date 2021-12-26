@@ -14,7 +14,7 @@ export const Repositories: NextComponentType = () => {
   const [hasUserForSearchrepos, setHasUserForSearchrepos] = useState([]);
 
   useEffect(() => {
-    (async function getdata() {
+    (async function getdata(): Promise<void> {
       if (githubState.user.login) {
         getUserRepos(githubState.user.login);
         getUserStarred(githubState.user.login);

@@ -65,24 +65,30 @@ const GithubProvider: NextPage = ({ children }) => {
   };
 
   const getUserRepos = (username: string): void => {
-    api.get(`users/${username}/repos`).then(({ data }) => {
-      console.log("data: " + JSON.stringify(data));
+    api
+      .get(`users/${username}/repos`)
+      .then(({ data }) => {
+        console.log("data: " + JSON.stringify(data));
 
-      setGithubState((prevState) => ({
-        ...prevState,
-        repositories: data,
-      }));
-    });
+        setGithubState((prevState) => ({
+          ...prevState,
+          repositories: data,
+        }));
+      })
+      .catch((error: Error) => error);
   };
 
   const getUserStarred = (username: string): void => {
-    api.get(`users/${username}/starred`).then(({ data }) => {
-      console.log("data: " + JSON.stringify(data));
-      setGithubState((prevState) => ({
-        ...prevState,
-        starred: data,
-      }));
-    });
+    api
+      .get(`users/${username}/starred`)
+      .then(({ data }) => {
+        console.log("data: " + JSON.stringify(data));
+        setGithubState((prevState) => ({
+          ...prevState,
+          starred: data,
+        }));
+      })
+      .catch((error: Error) => error);
   };
 
   const contextValue: OwnProps = {

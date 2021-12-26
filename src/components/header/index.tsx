@@ -18,6 +18,7 @@ export const Header: NextComponentType = () => {
         <input
           type="text"
           placeholder="Digite o username para pesquisa..."
+          value={usernameForSearch}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setUsernameForSearch(
               (prevState) => (prevState = event.target.value)
